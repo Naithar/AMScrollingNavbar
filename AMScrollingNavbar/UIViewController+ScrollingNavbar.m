@@ -185,13 +185,16 @@ const NSInteger kAMScrollingNavBarOverlayTag = 1900091;
     // This works fine in iOS8 without the ugly delay. Oh well.
     NSTimeInterval time = SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0") ? 0 : 0.1;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(time * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        if (self.expanded) {
-            [self showNavbar];
-        } else if (self.collapsed) {
-            self.collapsed = NO;
-            self.expanded = YES;
-            [self hideNavbarAnimated:NO];
+        if (!self.view.window) {
+            return;
         }
+//        if (self.expanded) {
+            [self showNavbar];
+//        } else if (self.collapsed) {
+//            self.collapsed = NO;
+//            self.expanded = YES;
+//            [self hideNavbarAnimated:NO];
+//        }
     });
 }
 
@@ -249,6 +252,10 @@ const NSInteger kAMScrollingNavBarOverlayTag = 1900091;
 
 - (void)hideNavbarAnimated:(BOOL)animated
 {
+    if (!self.view.window) {
+        return;
+    }
+    
     if (self.scrollableView != nil) {
         if (self.expanded) {
             if (!self.scrollableViewConstraint) {
@@ -271,10 +278,18 @@ const NSInteger kAMScrollingNavBarOverlayTag = 1900091;
 
 - (void)showNavBarAnimated:(BOOL)animated
 {
+    if (!self.view.window) {
+        return;
+    }
+
+    __weak typeof(self.panGesture) weakGesture = self.panGesture;
+
     if (self.scrollableView != nil) {
-        BOOL isTracking = self.panGesture.state == UIGestureRecognizerStateBegan || self.panGesture.state == UIGestureRecognizerStateChanged;
+        BOOL isTracking = weakGesture.state == UIGestureRecognizerStateBegan
+        || weakGesture.state == UIGestureRecognizerStateChanged;
+
         if (self.collapsed || isTracking) {
-            self.panGesture.enabled = NO;
+            weakGesture.enabled = NO;
             if (!self.scrollableViewConstraint) {
                 // Frame version
                 CGRect rect = [self scrollView].frame;
@@ -290,7 +305,7 @@ const NSInteger kAMScrollingNavBarOverlayTag = 1900091;
                 UIView *animationSuperview = [self scrollingSuperview] ?: self.view;
                 [animationSuperview layoutIfNeeded];
             } completion:^(BOOL finished) {
-                self.panGesture.enabled = YES;
+                weakGesture.enabled = YES;
             }];
         } else {
             [self updateNavbarAlpha:self.navbarHeight];
