@@ -77,6 +77,20 @@
                                     <segue destination="wgo-OD-JGg" kind="push" id="eQp-h0-Sm7"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0pg-wr-TZO">
+                                <rect key="frame" x="0.0" y="222" width="320" height="40"/>
+                                <color key="backgroundColor" red="0.22768095269999999" green="0.3203378053" blue="0.4262695312" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="6lu-gS-bDe"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
+                                <state key="normal" title="Page View Controller">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="TiU-9o-85M" kind="push" id="sse-SV-Fyg"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -85,8 +99,11 @@
                             <constraint firstAttribute="trailing" secondItem="8zp-gR-gPv" secondAttribute="trailing" id="K1Z-xY-qD6"/>
                             <constraint firstItem="8zp-gR-gPv" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="NAv-oT-9OD"/>
                             <constraint firstItem="9Iy-z5-iHz" firstAttribute="top" secondItem="eWu-oR-Ily" secondAttribute="bottom" constant="9" id="UxD-fY-dPb"/>
+                            <constraint firstItem="0pg-wr-TZO" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="Y4j-qw-wBz"/>
                             <constraint firstAttribute="trailing" secondItem="9Iy-z5-iHz" secondAttribute="trailing" id="YYN-uZ-Dfq"/>
                             <constraint firstItem="rg7-vb-HUK" firstAttribute="top" secondItem="tUD-O8-N3a" secondAttribute="bottom" constant="9" id="g3z-IC-g82"/>
+                            <constraint firstItem="0pg-wr-TZO" firstAttribute="top" secondItem="8zp-gR-gPv" secondAttribute="bottom" constant="10" id="gCU-qo-k0l"/>
+                            <constraint firstAttribute="trailing" secondItem="0pg-wr-TZO" secondAttribute="trailing" id="i60-bz-Lgg"/>
                             <constraint firstAttribute="trailing" secondItem="tUD-O8-N3a" secondAttribute="trailing" id="j8M-eg-aDl"/>
                             <constraint firstItem="tUD-O8-N3a" firstAttribute="top" secondItem="9Iy-z5-iHz" secondAttribute="bottom" constant="9" id="lU1-Ey-dHL"/>
                             <constraint firstItem="8zp-gR-gPv" firstAttribute="top" secondItem="rg7-vb-HUK" secondAttribute="bottom" constant="9" id="ntF-C8-6y9"/>
@@ -100,6 +117,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="482" y="138"/>
+        </scene>
+        <!--Page View Controller-->
+        <scene sceneID="VpE-ZP-yhH">
+            <objects>
+                <viewController id="TiU-9o-85M" customClass="AMPageViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xJW-84-fYL"/>
+                        <viewControllerLayoutGuide type="bottom" id="7I4-fC-D2H"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="eQv-Dd-PPA">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="srU-Xq-lka"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uYr-D8-tJU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="299" y="1012"/>
         </scene>
         <!--Web View Controller-->
         <scene sceneID="zqL-29-EY3">

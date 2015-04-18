@@ -28,6 +28,7 @@
 		65BF9E6C182E5AC70092BF7F /* AMWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BF9E6B182E5AC70092BF7F /* AMWebViewController.m */; };
 		65BF9E6F182E5AD40092BF7F /* AMTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BF9E6E182E5AD40092BF7F /* AMTableViewController.m */; };
 		65D094891A4066600026644E /* MainTabbed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65D094881A4066600026644E /* MainTabbed.storyboard */; };
+		90DB7A8C1AE29595005F93F9 /* AMPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90DB7A8B1AE29595005F93F9 /* AMPageViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,8 @@
 		65BF9E6E182E5AD40092BF7F /* AMTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMTableViewController.m; sourceTree = "<group>"; };
 		65D094881A4066600026644E /* MainTabbed.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainTabbed.storyboard; sourceTree = "<group>"; };
 		8489AA7F1845642D00C862B1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main.storyboard; sourceTree = "<group>"; };
+		90DB7A8A1AE29595005F93F9 /* AMPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPageViewController.h; sourceTree = "<group>"; };
+		90DB7A8B1AE29595005F93F9 /* AMPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMPageViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,6 +202,8 @@
 				65BF9E6E182E5AD40092BF7F /* AMTableViewController.m */,
 				632963A7186E5834005CBEA8 /* AMCollectionViewController.h */,
 				632963A8186E5834005CBEA8 /* AMCollectionViewController.m */,
+				90DB7A8A1AE29595005F93F9 /* AMPageViewController.h */,
+				90DB7A8B1AE29595005F93F9 /* AMPageViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -327,6 +332,7 @@
 				652B4480182D376600D01F5C /* AMAppDelegate.m in Sources */,
 				65BF9E6C182E5AC70092BF7F /* AMWebViewController.m in Sources */,
 				65BF9E69182E5AB70092BF7F /* AMScrollViewController.m in Sources */,
+				90DB7A8C1AE29595005F93F9 /* AMPageViewController.m in Sources */,
 				652B4486182D376600D01F5C /* AMViewController.m in Sources */,
 				652B447C182D376600D01F5C /* main.m in Sources */,
 			);
