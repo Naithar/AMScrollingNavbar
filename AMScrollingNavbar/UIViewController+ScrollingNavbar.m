@@ -476,16 +476,13 @@ const NSInteger kAMScrollingNavBarOverlayTag = 1900091;
 {
     // Hold the scroll steady until the navbar appears/disappears
     CGPoint offset = [[self scrollView] contentOffset];
-    
-    if ([[self scrollView] respondsToSelector:@selector(translatesAutoresizingMaskIntoConstraints)] && [self scrollView].translatesAutoresizingMaskIntoConstraints) {
-        [[self scrollView] setContentOffset:(CGPoint){offset.x, offset.y - delta}];
-    } else {
-        if (delta > 0) {
-            [[self scrollView] setContentOffset:(CGPoint){offset.x, offset.y - delta/* - 1*/}];
-        } else {
-            [[self scrollView] setContentOffset:(CGPoint){offset.x, offset.y - delta/* + 1*/}];
-        }
-    }
+
+    [[self scrollView] setContentOffset:(CGPoint){offset.x, offset.y - delta}];
+//    if ([[self scrollView] respondsToSelector:@selector(translatesAutoresizingMaskIntoConstraints)] && [self scrollView].translatesAutoresizingMaskIntoConstraints) {
+//        [[self scrollView] setContentOffset:(CGPoint){offset.x, offset.y - delta}];
+//    } else {
+//        [[self scrollView] setContentOffset:(CGPoint){offset.x, offset.y - delta}];
+//    }
 }
 
 - (CGPoint)contentoffset
