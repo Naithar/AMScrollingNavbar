@@ -12,6 +12,8 @@
 #import "UIViewController+ScrollingNavbar.h"
 #import <objc/runtime.h>
 
+const NSInteger kAMScrollingNavBarOverlayTag = 1900091;
+
 @implementation UIViewController (ScrollingNavbar)
 
 - (void)setUseSuperview:(BOOL)useSuperview { objc_setAssociatedObject(self, @selector(useSuperview), [NSNumber numberWithBool:useSuperview], OBJC_ASSOCIATION_RETAIN);}
@@ -72,6 +74,24 @@
 - (void)setShouldScrollWhenContentFits:(BOOL)shouldScrollWhenContentFits { objc_setAssociatedObject(self, @selector(shouldScrollWhenContentFits), [NSNumber numberWithBool:shouldScrollWhenContentFits], OBJC_ASSOCIATION_RETAIN); }
 - (BOOL)shouldScrollWhenContentFits {	return [objc_getAssociatedObject(self, @selector(shouldScrollWhenContentFits)) boolValue]; }
 
+
+// Using (assing) because there is no weak reference for objc_setAssociatedObject()
+// objects are not deallocated if not used this way.
+- (void)setSuperview:(UIView*)superview {
+    objc_setAssociatedObject(self, @selector(superview), superview, OBJC_ASSOCIATION_ASSIGN);
+}
+- (UIView*)superview {
+    return (UIView*)objc_getAssociatedObject(self, @selector(superview));
+}
+
+- (void)setParentViewController:(UIViewController*)viewController {
+    objc_setAssociatedObject(self, @selector(parentViewController), viewController, OBJC_ASSOCIATION_ASSIGN);
+}
+- (UIViewController*)parentViewController {
+    return (UIViewController*)objc_getAssociatedObject(self, @selector(parentViewController));
+}
+
+
 - (void)setScrollableViewConstraint:(NSLayoutConstraint *)constraint withOffset:(CGFloat)offset
 {
     self.scrollableHeaderConstraint = constraint;
@@ -127,6 +147,7 @@
     [self.overlay setUserInteractionEnabled:NO];
     [self.overlay setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
     [self.navigationController.navigationBar addSubview:self.overlay];
+    [self.overlay setTag:kAMScrollingNavBarOverlayTag];
     [self.overlay setAlpha:0];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -147,6 +168,10 @@
     self.overlay = nil;
     self.scrollableView = nil;
     self.panGesture = nil;
+
+    [self setSuperview:nil];
+    [self setParentViewController:nil];
+
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidBecomeActiveNotification object:nil];
 }
 

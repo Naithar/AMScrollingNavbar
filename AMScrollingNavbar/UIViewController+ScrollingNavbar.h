@@ -9,6 +9,8 @@
 @import Foundation;
 @import UIKit;
 
+
+extern const NSInteger kAMScrollingNavBarOverlayTag;
 /**-----------------------------------------------------------------------------
  * @name AMScrollingNavbarDelegate
  * -----------------------------------------------------------------------------
@@ -156,5 +158,8 @@
  */
 - (void)setUseSuperview:(BOOL)useSuperview;
 
+
+- (void)setSuperview:(UIView*)superview;
+- (void)setParentViewController:(UIViewController*)viewController;
 @end
 
