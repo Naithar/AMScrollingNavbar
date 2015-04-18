@@ -111,7 +111,7 @@
     CGRect frame = self.navigationController.navigationBar.frame;
     frame.origin = CGPointZero;
     self.overlay = [[UIView alloc] initWithFrame:frame];
-    
+
     if (self.navigationController.navigationBar.barTintColor) {
         [self.overlay setBackgroundColor:self.navigationController.navigationBar.barTintColor];
     } else if ([UINavigationBar appearance].barTintColor) {
@@ -223,7 +223,7 @@
             }
             [UIView animateWithDuration:animated ? 0.1 : 0 animations:^{
                 [self scrollWithDelta:self.navbarHeight];
-                [self.view setNeedsLayout];
+                [self.view layoutIfNeeded];
             }];
         } else {
             [self updateNavbarAlpha:self.navbarHeight];
@@ -326,7 +326,7 @@
                 if (self.scrollableHeaderConstraint.constant < -self.scrollableHeaderOffset) {
                     self.scrollableHeaderConstraint.constant = -self.scrollableHeaderOffset;
                 }
-                [self.view setNeedsLayout];
+                [self.view layoutIfNeeded];
             }
             return;
         }
@@ -360,7 +360,7 @@
                 if (self.scrollableHeaderConstraint.constant > 0) {
                     self.scrollableHeaderConstraint.constant = 0;
                 }
-                [self.view setNeedsLayout];
+                [self.view layoutIfNeeded];
             }
             return;
         }
@@ -499,7 +499,7 @@
         }
     }
     
-    [self.view setNeedsLayout];
+    [self.view layoutIfNeeded];
 }
 
 - (void)updateNavbarAlpha:(CGFloat)delta
