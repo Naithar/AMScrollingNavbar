@@ -443,8 +443,11 @@
     } else {
         offset = 0;
     }
-    NSTimeInterval duration = ABS((self.scrollableHeaderConstraint.constant - self.scrollableHeaderOffset) * 0.2);
-    [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+
+//    gives > 10 seconds
+//    NSTimeInterval duration = ABS((self.scrollableHeaderConstraint.constant - self.scrollableHeaderOffset) * 0.2);
+
+    [UIView animateWithDuration:0.15 delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
         self.scrollableHeaderConstraint.constant = offset;
         [self.view layoutIfNeeded];
     } completion:nil];
