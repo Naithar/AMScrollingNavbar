@@ -77,18 +77,18 @@ const NSInteger kAMScrollingNavBarOverlayTag = 1900091;
 
 // Using (assing) because there is no weak reference for objc_setAssociatedObject()
 // objects are not deallocated if not used this way.
-- (void)setSuperview:(UIView*)superview {
-    objc_setAssociatedObject(self, @selector(superview), superview, OBJC_ASSOCIATION_ASSIGN);
+- (void)setScrollingSuperview:(UIView*)superview {
+    objc_setAssociatedObject(self, @selector(scrollingSuperview), superview, OBJC_ASSOCIATION_ASSIGN);
 }
-- (UIView*)superview {
-    return (UIView*)objc_getAssociatedObject(self, @selector(superview));
+- (UIView*)scrollingSuperview {
+    return (UIView*)objc_getAssociatedObject(self, @selector(scrollingSuperview));
 }
 
-- (void)setParentViewController:(UIViewController*)viewController {
-    objc_setAssociatedObject(self, @selector(parentViewController), viewController, OBJC_ASSOCIATION_ASSIGN);
+- (void)setScrollingViewController:(UIViewController*)viewController {
+    objc_setAssociatedObject(self, @selector(scrollingViewController), viewController, OBJC_ASSOCIATION_ASSIGN);
 }
-- (UIViewController*)parentViewController {
-    return (UIViewController*)objc_getAssociatedObject(self, @selector(parentViewController));
+- (UIViewController*)scrollingViewController {
+    return (UIViewController*)objc_getAssociatedObject(self, @selector(scrollingViewController));
 }
 
 
