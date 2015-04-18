@@ -323,9 +323,13 @@
         if (self.collapsed) {
             if (self.scrollableHeaderConstraint.constant > -self.scrollableHeaderOffset) {
                 self.scrollableHeaderConstraint.constant -= delta;
+
+                [self restoreContentoffset:delta];
+
                 if (self.scrollableHeaderConstraint.constant < -self.scrollableHeaderOffset) {
                     self.scrollableHeaderConstraint.constant = -self.scrollableHeaderOffset;
                 }
+
                 [self.view layoutIfNeeded];
             }
             return;
@@ -357,6 +361,9 @@
         if (self.expanded) {
             if (self.scrollableHeaderConstraint.constant < 0) {
                 self.scrollableHeaderConstraint.constant -= delta;
+
+                [self restoreContentoffset:delta];
+
                 if (self.scrollableHeaderConstraint.constant > 0) {
                     self.scrollableHeaderConstraint.constant = 0;
                 }
@@ -411,9 +418,9 @@
         [[self scrollView] setContentOffset:(CGPoint){offset.x, offset.y - delta}];
     } else {
         if (delta > 0) {
-            [[self scrollView] setContentOffset:(CGPoint){offset.x, offset.y - delta - 1}];
+            [[self scrollView] setContentOffset:(CGPoint){offset.x, offset.y - delta/* - 1*/}];
         } else {
-            [[self scrollView] setContentOffset:(CGPoint){offset.x, offset.y - delta + 1}];
+            [[self scrollView] setContentOffset:(CGPoint){offset.x, offset.y - delta/* + 1*/}];
         }
     }
 }
