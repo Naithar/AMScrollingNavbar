@@ -169,8 +169,8 @@ const NSInteger kAMScrollingNavBarOverlayTag = 1900091;
     self.scrollableView = nil;
     self.panGesture = nil;
 
-    [self setSuperview:nil];
-    [self setParentViewController:nil];
+    [self setScrollingSuperview:nil];
+    [self setScrollingViewController:nil];
 
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidBecomeActiveNotification object:nil];
 }
