@@ -167,6 +167,7 @@ const NSInteger kAMScrollingNavBarOverlayTag = 1900091;
 
 - (void)stopFollowingScrollView
 {
+    [self panGesture].delegate = nil;
     [self showNavBarAnimated:NO];
     [self.scrollableView removeGestureRecognizer:self.panGesture];
     [self.overlay removeFromSuperview];
@@ -316,6 +317,16 @@ const NSInteger kAMScrollingNavBarOverlayTag = 1900091;
 - (void)showNavbar
 {
     [self showNavBarAnimated:YES];
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRequireFailureOfGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+
+    if ([otherGestureRecognizer.view isKindOfClass:[UIScrollView class]]
+        && otherGestureRecognizer.view != gestureRecognizer.view) {
+        return YES;
+    }
+
+    return NO;
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer

@@ -6,9 +6,10 @@
 //  Copyright (c) 2015 Andrea Mazzini. All rights reserved.
 //
 
+#import "UIViewController+ScrollingNavbar.h"
 #import "AMPageViewController.h"
 
-@interface AMPageViewController ()<UIPageViewControllerDelegate, UIPageViewControllerDataSource>
+@interface AMPageViewController ()<UIPageViewControllerDelegate, UIPageViewControllerDataSource, UITableViewDataSource>
 
 @property (nonatomic, strong) UIPageViewController *pageViewController
 ;
@@ -21,7 +22,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 
-    self.navigationItem.title  = @"TODO";
+    self.navigationItem.title  = @"Page view controller";
 
     self.pageViewController = [[UIPageViewController alloc]
                                initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll
@@ -32,13 +33,28 @@
     self.pageViewController.delegate = self;
     self.pageViewController.dataSource = self;
 
-    UIViewController *view1 = [[UIViewController alloc] init];
-    view1.view.backgroundColor = [UIColor redColor];
+    self.view.backgroundColor = [UIColor blackColor];
+    self.pageViewController.view.backgroundColor = [UIColor blackColor];
 
-    UIViewController *view2 = [[UIViewController alloc] init];
-    view2.view.backgroundColor = [UIColor grayColor];
+    UIViewController *leftViewControler = [[UIViewController alloc] init];
+    UITableView *leftTableView = [[UITableView alloc] initWithFrame:leftViewControler.view.bounds];
+    leftTableView.dataSource = self;
+    leftTableView.backgroundColor = [UIColor redColor];
+    [leftViewControler.view addSubview:leftTableView];
+    [leftViewControler setScrollingSuperview:self.view];
+    [leftViewControler setScrollingViewController:self];
+    [leftViewControler followScrollView:leftTableView withDelay:60];
 
-    self.viewControllerArray = @[view1, view2];
+    UIViewController *rightViewController = [[UIViewController alloc] init];
+    UITableView *rightTableView = [[UITableView alloc] initWithFrame:leftViewControler.view.bounds];
+    rightTableView.dataSource = self;
+    rightTableView.backgroundColor = [UIColor grayColor];
+    [rightViewController.view addSubview:rightTableView];
+    [rightViewController setScrollingSuperview:self.view];
+    [rightViewController setScrollingViewController:self];
+    [rightViewController followScrollView:rightTableView withDelay:60];
+
+    self.viewControllerArray = @[leftViewControler, rightViewController];
 
     [self.pageViewController setViewControllers:@[self.viewControllerArray.firstObject]
                                       direction:UIPageViewControllerNavigationDirectionForward
@@ -74,6 +90,16 @@
 
 
     return nil;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 50;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@""];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@", indexPath];
+    return cell;
 }
 
 @end
