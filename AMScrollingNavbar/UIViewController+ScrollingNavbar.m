@@ -618,7 +618,7 @@ const NSInteger kAMScrollingNavBarOverlayTag = 1900091;
     UIView *currentOverlay = [navigationController.navigationBar viewWithTag:kAMScrollingNavBarOverlayTag] ?: self.overlay;
     [currentOverlay setTag:kAMScrollingNavBarOverlayTag];
     [currentOverlay setUserInteractionEnabled:NO];
-    [currentOverlay setBackgroundColor:viewController.navigationController.navigationBar.barTintColor];
+    [currentOverlay setBackgroundColor:navigationController.navigationBar.barTintColor];
 
     if (currentOverlay == self.overlay) {
         [navigationController.navigationBar addSubview:currentOverlay];

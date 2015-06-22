@@ -161,5 +161,6 @@ extern const NSInteger kAMScrollingNavBarOverlayTag;
 
 - (void)setScrollingSuperview:(UIView*)superview;
 - (void)setScrollingViewController:(UIViewController*)viewController;
+- (BOOL)expanded;
 @end
 
