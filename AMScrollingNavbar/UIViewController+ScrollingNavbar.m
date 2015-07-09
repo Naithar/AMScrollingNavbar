@@ -155,6 +155,7 @@ const NSInteger kAMScrollingNavBarOverlayTag = 1900091;
     [self.overlay setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
     [self.overlay setTag:kAMScrollingNavBarOverlayTag];
     [self.overlay setAlpha:0];
+    [self.overlay setHidden:YES];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didBecomeActive:)
@@ -631,6 +632,7 @@ const NSInteger kAMScrollingNavBarOverlayTag = 1900091;
     
     // Change the alpha channel of every item on the navbr. The overlay will appear, while the other objects will disappear, and vice versa
     [currentOverlay setAlpha:1 - alpha];
+    currentOverlay.hidden = currentOverlay.alpha == 0;
     
     [navigationController.navigationItem.leftBarButtonItems enumerateObjectsUsingBlock:^(UIBarButtonItem *obj, NSUInteger idx, BOOL *stop) {
         obj.customView.alpha = alpha;
