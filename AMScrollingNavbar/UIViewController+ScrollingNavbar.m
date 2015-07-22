@@ -544,8 +544,8 @@ const NSInteger kAMScrollingNavBarOverlayTag = 1900091;
     // Get back down
     if (pos >= (self.statusBar - frame.size.height / 2)) {
         CGFloat delta = frame.origin.y - self.statusBar;
-        NSTimeInterval duration = ABS((delta / (frame.size.height / 2)) * 0.2);
-        [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+        NSTimeInterval duration = 0.3;
+        [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionBeginFromCurrentState|UIViewAnimationCurveEaseOut animations:^{
             frame.origin.y = self.statusBar;
             navigationController.navigationBar.frame = frame;
             
@@ -557,8 +557,8 @@ const NSInteger kAMScrollingNavBarOverlayTag = 1900091;
     } else {
         // And back up
         CGFloat delta = frame.origin.y + self.deltaLimit;
-        NSTimeInterval duration = ABS((delta / (frame.size.height / 2)) * 0.2);
-        [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+        NSTimeInterval duration = 0.3;
+        [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionBeginFromCurrentState|UIViewAnimationCurveEaseOut animations:^{
             frame.origin.y = -self.deltaLimit;
             navigationController.navigationBar.frame = frame;
             
