@@ -280,9 +280,9 @@ const NSInteger kAMScrollingNavBarOverlayTag = 1900091;
 
 - (void)showNavBarAnimated:(BOOL)animated
 {
-    if (!self.view.window) {
-        return;
-    }
+    // if (!self.view.window) {
+        // return;
+    // }
     
     __weak typeof(self) weakSelf = self;
     __weak typeof(weakSelf.panGesture) weakGesture = self.panGesture;
